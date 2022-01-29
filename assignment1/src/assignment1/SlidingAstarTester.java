@@ -11,13 +11,13 @@ public class SlidingAstarTester
     {   
     	/*
         //initial board
-        char[][] initial = {{'5', '7', '1'},
+        int[][] initial = {{'5', '7', '1'},
                             {'2', '0', '8'},
                             {'4', '6', '3'}};
                             */
     	/*
         //final board
-        char[][] goal = {{'1', '4', '8'},
+        int[][] goal = {{'1', '4', '8'},
                          {'5', '2', '6'},
                          {'0', '3', '7'}};
         */
@@ -31,8 +31,13 @@ public class SlidingAstarTester
 
     	//declare file, scanner, and writer
 		File file;
-		FileWriter out;
-    	Scanner sc = new Scanner(new File("file1.txt"));
+		FileWriter out;//assignment1\file1.txt assignment1\src\SlidingAstarTester.java
+		Scanner in = new Scanner(System.in);
+    	Scanner sc;
+
+		System.out.print("Please input the file name to use in the \\file folder: ");
+		file = new File("assignment1\\file\\" + in.nextLine());
+		sc= new Scanner(file);
     	
     	//first int is the size
     	int size = sc.nextInt();
@@ -43,20 +48,20 @@ public class SlidingAstarTester
 		
     
     	//initialize our initial (next 9 ints) and goal (9 more ints) board
-    	char[][] initial = new char[size][size];
-    	char[][] goal = new char[size][size];
+    	int[][] initial = new int[size][size];
+    	int[][] goal = new int[size][size];
     	
     	//set values for initial board
     	for (int i = 0; i < size; i++) {
     		for (int j = 0; j < size; j++) {
-    			initial[i][j] = (char)(sc.nextInt() + '0');
+    			initial[i][j] = (sc.nextInt());
     		}
     	}
     	
     	//set values for goal board
     	for (int i = 0; i < size; i++) {
     		for (int j = 0; j < size; j++) {
-    			goal[i][j] = (char)(sc.nextInt() + '0');
+    			goal[i][j] = (sc.nextInt() );
     		}
     	}
     	
@@ -70,7 +75,7 @@ public class SlidingAstarTester
 
 		System.out.println(s.summary);
 		//write to file
-		file = new File("output.txt");
+		file = new File("assignment1\\file\\output.txt");
 		try{
 			file.createNewFile();
 			out = new FileWriter(file);

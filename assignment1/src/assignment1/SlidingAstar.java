@@ -9,16 +9,16 @@ public class SlidingAstar
     //Board class (inner class)
     private class Board
     {
-        private char[][] array;                 //board array
+        private int[][] array;                 //board array
         private int gvalue;                     //path cost
         private int hvalue;                     //heuristic value
         private int fvalue;                     //gvalue plus hvalue
         private Board parent;                   //parent board
     
         //Constructor of board class
-        private Board(char[][] array, int size)
+        private Board(int[][] array, int size)
         {
-            this.array = new char[size][size];  //create board array
+            this.array = new int[size][size];  //create board array
 
             for (int i = 0; i < size; i++)      //copy given array
                 for (int j = 0; j < size; j++)
@@ -43,7 +43,7 @@ public class SlidingAstar
     public String summary;                  //allows a user to pull a asummary of a run
 
     //Constructor of SlidingAstar class
-    public SlidingAstar(char[][] initial, char[][] goal, int size, int evalOpt, int heurOpt)
+    public SlidingAstar(int[][] initial, int[][] goal, int size, int evalOpt, int heurOpt)
     {
         this.size = size;                          //set size of board
         this.initial = new Board(initial, size);   //create initial board
@@ -54,12 +54,7 @@ public class SlidingAstar
         this.swapCount=0;
         this.summary="";
     }
-//hi :DDD
-// :)) this is how liveshare works
-//you can even use my terminal now
-//NOO plz loll
-//I cant type if u can see that
-//AMAZIN
+
     //Method solves sliding puzzle
     public void solve()
     {
@@ -130,7 +125,7 @@ public class SlidingAstar
         {                                       //of board
             for (j = 0; j < size; j++)
                 //if (board.array[i][j] == ' ') // this line is used for blank space to swap
-                if (board.array[i][j] == '0')   // this line is used for zero to swap
+                if (board.array[i][j] == 0)   // this line is used for zero to swap
                 {   
                     found = true;
                     break;
@@ -166,22 +161,22 @@ public class SlidingAstar
         if (direction == 'N')                        //swap empty slot to north
         {
             child.array[i][j] = child.array[i-1][j];
-            child.array[i-1][j] = '0';				
+            child.array[i-1][j] = 0;				
         }
         else if (direction == 'S')                   //swap empty slot to south
         {
             child.array[i][j] = child.array[i+1][j];
-            child.array[i+1][j] = '0';
+            child.array[i+1][j] = 0;
         }
         else if (direction == 'E')                   //swap empty slot to east
         {
             child.array[i][j] = child.array[i][j+1];
-            child.array[i][j+1] = '0';
+            child.array[i][j+1] = 0;
         }
         else                                         //swap empty slot to west
         {
             child.array[i][j] = child.array[i][j-1];
-            child.array[i][j-1] = '0';
+            child.array[i][j-1] = 0;
         }
 
         child.gvalue = board.gvalue + 1;             //parent path cost plus one
